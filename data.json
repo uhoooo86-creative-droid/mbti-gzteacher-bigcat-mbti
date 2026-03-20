@@ -1,38 +1,42 @@
 {
   "s1": {
-    "Input": {
-      "url": "https://res.cloudinary.com/drmi4w8dp/video/upload/v1773970912/umha110u7nniajlrqt5z.mp3",
-      "name": "Input",
-      "duration": null
-    },
-    "Action": {
-      "url": "https://res.cloudinary.com/drmi4w8dp/video/upload/v1773970884/hrjhh2yrlmrrdqctwiqk.mp3",
-      "name": "Action",
-      "duration": null
-    },
-    "Game": {
-      "url": "https://res.cloudinary.com/drmi4w8dp/video/upload/v1773970937/yksmmugp3fultbddhsgl.mp3",
-      "name": "Game",
-      "duration": null
-    },
-    "Speaking": {
-      "url": "https://res.cloudinary.com/drmi4w8dp/video/upload/v1773970993/wvwdbfpqy0jjik7xcn0q.mp3",
-      "name": "Speaking",
-      "duration": null
-    },
-    "Wrap up": {
-      "url": "https://res.cloudinary.com/drmi4w8dp/video/upload/v1773971014/dn4ytalzbsxkxnefyz0l.mp3",
-      "name": "Wrap up",
-      "duration": null
-    },
-    "Warm up": {
-      "url": "https://res.cloudinary.com/drmi4w8dp/video/upload/v1773970770/ly27ev9yymwnk6udwj2u.mp3",
-      "name": "Warm up",
-      "duration": null
-    }
+    "Warm up": { "url": "", "name": "", "duration": null },
+    "Input":   { "url": "", "name": "", "duration": null },
+    "Action":  { "url": "", "name": "", "duration": null },
+    "Game":    { "url": "", "name": "", "duration": null },
+    "Speaking":{ "url": "", "name": "", "duration": null },
+    "Wrap up": { "url": "", "name": "", "duration": null }
   },
-  "s2": {},
-  "s3": {},
-  "s4": {},
-  "s5": {}
+  "s2": {
+    "Hook":    { "url": "", "name": "", "duration": null },
+    "Story":   { "url": "", "name": "", "duration": null },
+    "Mission": { "url": "", "name": "", "duration": null },
+    "Game":    { "url": "", "name": "", "duration": null },
+    "Speaking":{ "url": "", "name": "", "duration": null },
+    "Wrap up": { "url": "", "name": "", "duration": null }
+  },
+  "s3": {
+    "Warm up": { "url": "", "name": "", "duration": null },
+    "Word":    { "url": "", "name": "", "duration": null },
+    "Practice":{ "url": "", "name": "", "duration": null },
+    "Game 1":  { "url": "", "name": "", "duration": null },
+    "Game 2":  { "url": "", "name": "", "duration": null },
+    "Wrap up": { "url": "", "name": "", "duration": null }
+  },
+  "s4": {
+    "Warm up":  { "url": "", "name": "", "duration": null },
+    "Word":     { "url": "", "name": "", "duration": null },
+    "Mission":  { "url": "", "name": "", "duration": null },
+    "Team game":{ "url": "", "name": "", "duration": null },
+    "Challenge":{ "url": "", "name": "", "duration": null },
+    "Wrap up":  { "url": "", "name": "", "duration": null }
+  },
+  "s5": {
+    "Warm up":  { "url": "", "name": "", "duration": null },
+    "Word":     { "url": "", "name": "", "duration": null },
+    "Modeling": { "url": "", "name": "", "duration": null },
+    "Role play":{ "url": "", "name": "", "duration": null },
+    "Game":     { "url": "", "name": "", "duration": null },
+    "Wrap up":  { "url": "", "name": "", "duration": null }
+  }
 }
