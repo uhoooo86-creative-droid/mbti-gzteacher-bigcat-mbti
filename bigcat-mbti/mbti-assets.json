@@ -1,25 +1,45 @@
 {
-  "ESTJ": {
-    "group": "SJ",
-    "icon": "⚖️",
-    "label": "규칙형 교사",
-    "memo": "",
-    "audio": {
-      "name": "ESTJ-bgm.mp3",
-      "url": "blob:https://uhoooo86-creative-droid.github.io/f08d25dc-495f-476c-bcf8-2a1f68b834ec"
-    },
-    "material": null
-  },
   "INTJ": {
     "group": "NT",
     "icon": "🎯",
     "label": "전략형 교사",
     "memo": "",
     "audio": {
-      "name": "INTJ-bgm.mp3",
-      "url": "blob:https://uhoooo86-creative-droid.github.io/855e4923-372f-4890-bda9-a02a7e31b2cb"
+      "name": "intj-bgm.mp3",
+      "path": "./assets/audio/intj-bgm.mp3"
     },
-    "material": null
+    "material": {
+      "name": "intj-card.pdf",
+      "path": "./assets/materials/intj-card.pdf"
+    }
+  },
+  "INTP": {
+    "group": "NT",
+    "icon": "🔍",
+    "label": "탐구형 교사",
+    "memo": "",
+    "audio": {
+      "name": "intp-bgm.mp3",
+      "path": "./assets/audio/intp-bgm.mp3"
+    },
+    "material": {
+      "name": "intp-card.pdf",
+      "path": "./assets/materials/intp-card.pdf"
+    }
+  },
+  "ENTJ": {
+    "group": "NT",
+    "icon": "🏆",
+    "label": "리더형 교사",
+    "memo": "",
+    "audio": {
+      "name": "entj-bgm.mp3",
+      "path": "./assets/audio/entj-bgm.mp3"
+    },
+    "material": {
+      "name": "entj-card.pdf",
+      "path": "./assets/materials/entj-card.pdf"
+    }
   },
   "ENTP": {
     "group": "NT",
@@ -27,56 +47,40 @@
     "label": "창의형 교사",
     "memo": "",
     "audio": {
-      "name": "ENTP-bgm.mp3",
-      "url": "blob:https://uhoooo86-creative-droid.github.io/c43f8730-d1bb-4717-b718-c5d3a49b524d"
+      "name": "entp-bgm.mp3",
+      "path": "./assets/audio/entp-bgm.mp3"
     },
-    "material": null
-  },
-  "ESTP": {
-    "group": "SP",
-    "icon": "⚡",
-    "label": "액션형 교사",
-    "memo": "",
-    "audio": {
-      "name": "ESTP-bgm.mp3",
-      "url": "blob:https://uhoooo86-creative-droid.github.io/8ea9f614-10f0-4a86-8630-8815d149e05d"
-    },
-    "material": null
-  },
-  "ISFP": {
-    "group": "SP",
-    "icon": "🎭",
-    "label": "표현형 교사",
-    "memo": "",
-    "audio": {
-      "name": "ISFP-bgm.mp3",
-      "url": "blob:https://uhoooo86-creative-droid.github.io/1049c500-3076-4be8-9a68-5c0c5e99ca9e"
-    },
-    "material": null
-  },
-  "ENTJ": {
-    "group": "NT",
-    "icon": "🏆",
-    "label": "리더형 교사",
-    "memo": "문장부호, Period",
-    "audio": null,
     "material": {
-      "name": "ENTJ-card.pdf",
-      "path": "./assets/materials/ENTJ-card.pdf"
+      "name": "entp-card.pdf",
+      "path": "./assets/materials/entp-card.pdf"
     }
   },
-  "ISTJ": {
-    "group": "SJ",
-    "icon": "📋",
-    "label": "루틴형 교사",
+  "INFJ": {
+    "group": "NF",
+    "icon": "🌙",
+    "label": "공감형 교사",
     "memo": "",
     "audio": {
-      "name": "ISTJ-bgm.mp3",
-      "path": "./assets/audio/ISTJ-bgm.mp3"
+      "name": "infj-bgm.mp3",
+      "path": "./assets/audio/infj-bgm.mp3"
     },
     "material": {
-      "name": "ISTJ-card.pdf",
-      "path": "./assets/materials/ISTJ-card.pdf"
+      "name": "infj-card.pdf",
+      "path": "./assets/materials/infj-card.pdf"
+    }
+  },
+  "INFP": {
+    "group": "NF",
+    "icon": "🎨",
+    "label": "감성형 교사",
+    "memo": "",
+    "audio": {
+      "name": "infp-bgm.mp3",
+      "path": "./assets/audio/infp-bgm.mp3"
+    },
+    "material": {
+      "name": "infp-card.pdf",
+      "path": "./assets/materials/infp-card.pdf"
     }
   },
   "ENFJ": {
@@ -85,12 +89,138 @@
     "label": "리드형 교사",
     "memo": "",
     "audio": {
-      "name": "ENFJ-bgm.mp3",
-      "path": "./assets/audio/ENFJ-bgm.mp3"
+      "name": "enfj-bgm.mp3",
+      "path": "./assets/audio/enfj-bgm.mp3"
     },
     "material": {
-      "name": "ENFJ-card.pdf",
-      "path": "./assets/materials/ENFJ-card.pdf"
+      "name": "enfj-card.pdf",
+      "path": "./assets/materials/enfj-card.pdf"
+    }
+  },
+  "ENFP": {
+    "group": "NF",
+    "icon": "🎉",
+    "label": "활력형 교사",
+    "memo": "",
+    "audio": {
+      "name": "enfp-bgm.mp3",
+      "path": "./assets/audio/enfp-bgm.mp3"
+    },
+    "material": {
+      "name": "enfp-card.pdf",
+      "path": "./assets/materials/enfp-card.pdf"
+    }
+  },
+  "ISTJ": {
+    "group": "SJ",
+    "icon": "📋",
+    "label": "루틴형 교사",
+    "memo": "",
+    "audio": {
+      "name": "istj-bgm.mp3",
+      "path": "./assets/audio/istj-bgm.mp3"
+    },
+    "material": {
+      "name": "istj-card.pdf",
+      "path": "./assets/materials/istj-card.pdf"
+    }
+  },
+  "ISFJ": {
+    "group": "SJ",
+    "icon": "🌸",
+    "label": "케어형 교사",
+    "memo": "",
+    "audio": {
+      "name": "isfj-bgm.mp3",
+      "path": "./assets/audio/isfj-bgm.mp3"
+    },
+    "material": {
+      "name": "isfj-card.pdf",
+      "path": "./assets/materials/isfj-card.pdf"
+    }
+  },
+  "ESTJ": {
+    "group": "SJ",
+    "icon": "⚖️",
+    "label": "규칙형 교사",
+    "memo": "",
+    "audio": {
+      "name": "estj-bgm.mp3",
+      "path": "./assets/audio/estj-bgm.mp3"
+    },
+    "material": {
+      "name": "estj-card.pdf",
+      "path": "./assets/materials/estj-card.pdf"
+    }
+  },
+  "ESFJ": {
+    "group": "SJ",
+    "icon": "👏",
+    "label": "소통형 교사",
+    "memo": "",
+    "audio": {
+      "name": "esfj-bgm.mp3",
+      "path": "./assets/audio/esfj-bgm.mp3"
+    },
+    "material": {
+      "name": "esfj-card.pdf",
+      "path": "./assets/materials/esfj-card.pdf"
+    }
+  },
+  "ISTP": {
+    "group": "SP",
+    "icon": "🔧",
+    "label": "실습형 교사",
+    "memo": "",
+    "audio": {
+      "name": "istp-bgm.mp3",
+      "path": "./assets/audio/istp-bgm.mp3"
+    },
+    "material": {
+      "name": "istp-card.pdf",
+      "path": "./assets/materials/istp-card.pdf"
+    }
+  },
+  "ISFP": {
+    "group": "SP",
+    "icon": "🎭",
+    "label": "표현형 교사",
+    "memo": "",
+    "audio": {
+      "name": "isfp-bgm.mp3",
+      "path": "./assets/audio/isfp-bgm.mp3"
+    },
+    "material": {
+      "name": "isfp-card.pdf",
+      "path": "./assets/materials/isfp-card.pdf"
+    }
+  },
+  "ESTP": {
+    "group": "SP",
+    "icon": "⚡",
+    "label": "액션형 교사",
+    "memo": "",
+    "audio": {
+      "name": "estp-bgm.mp3",
+      "path": "./assets/audio/estp-bgm.mp3"
+    },
+    "material": {
+      "name": "estp-card.pdf",
+      "path": "./assets/materials/estp-card.pdf"
+    }
+  },
+  "ESFP": {
+    "group": "SP",
+    "icon": "🌟",
+    "label": "무대형 교사",
+    "memo": "",
+    "audio": {
+      "name": "esfp-bgm.mp3",
+      "path": "./assets/audio/esfp-bgm.mp3"
+    },
+    "material": {
+      "name": "esfp-card.pdf",
+      "path": "./assets/materials/esfp-card.pdf"
     }
   }
 }
