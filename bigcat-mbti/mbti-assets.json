@@ -1,15 +1,4 @@
 {
-  "ISTJ": {
-    "group": "SJ",
-    "icon": "📋",
-    "label": "루틴형 교사",
-    "memo": "",
-    "audio": null,
-    "material": {
-      "name": "ESTJ-card.pdf",
-      "url": "blob:https://uhoooo86-creative-droid.github.io/aaac748a-ea76-4b62-9d18-422ec86837cd"
-    }
-  },
   "ESTJ": {
     "group": "SJ",
     "icon": "⚖️",
@@ -69,11 +58,11 @@
     "group": "NT",
     "icon": "🏆",
     "label": "리더형 교사",
-    "memo": "",
-    "audio": {
-      "name": "ENTJ-bgm.mp3",
-      "path": "./assets/audio/ENTJ-bgm.mp3"
-    },
-    "material": null
+    "memo": "문장부호, Period",
+    "audio": null,
+    "material": {
+      "name": "ENTJ-card.pdf",
+      "path": "./assets/materials/ENTJ-card.pdf"
+    }
   }
 }
