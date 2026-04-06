@@ -1,14 +1,14 @@
 {
   "ISTJ": {
     "group": "SJ",
-    "icon": "🤝",
-    "label": "리드형 교사",
+    "icon": "📋",
+    "label": "루틴형 교사",
     "memo": "",
-    "audio": {
-      "name": "ENFJ-bgm.mp3",
-      "path": "./assets/audio/ENFJ-bgm.mp3"
-    },
-    "material": null
+    "audio": null,
+    "material": {
+      "name": "ISTJ-card.pdf",
+      "path": "./assets/materials/ISTJ-card.pdf"
+    }
   },
   "ISTP": {
     "group": "SP",
@@ -73,11 +73,11 @@
     "icon": "🏆",
     "label": "리더형 교사",
     "memo": "",
-    "audio": {
-      "name": "ENTJ-bgm.mp3",
-      "path": "./assets/audio/ENTJ-bgm.mp3"
-    },
-    "material": null
+    "audio": null,
+    "material": {
+      "name": "ENTJ-card.pdf",
+      "path": "./assets/materials/ENTJ-card.pdf"
+    }
   },
   "INTJ": {
     "group": "NT",
