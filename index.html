@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>BeatCat MBTI</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:#FDF7F0;font-family:'Nunito',sans-serif;color:#222;touch-action:manipulation;}
+button{cursor:pointer;font-family:'Nunito',sans-serif;border:none;outline:none;background:none;}
+#app{display:flex;flex-direction:column;height:100%;max-width:430px;margin:0 auto;}
+
+/* HEADER */
+#header{background:#FDF7F0;padding:16px 20px 8px;text-align:center;flex-shrink:0;}
+.hd-title{font-size:21px;font-weight:900;color:#222;letter-spacing:-.02em;}
+.hd-title span{color:#E8584C;}
+.hd-sub{font-size:11px;color:#999;font-weight:700;margin-top:2px;}
+
+/* MAIN CARD */
+#main-card{background:#fff;border-radius:24px;margin:0 12px;flex:1;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.09);}
+#card-scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 18px 14px;}
+#card-scroll::-webkit-scrollbar{width:3px;}
+#card-scroll::-webkit-scrollbar-thumb{background:#eee;border-radius:2px;}
+
+/* SEC HEADER */
+.sec-header{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;color:#555;margin-bottom:9px;letter-spacing:.01em;}
+.sec-header .si{font-size:15px;}
+
+/* CHIPS */
+.chip-group{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:20px;font-size:12px;font-weight:800;background:#F5F5F5;color:#666;border:1.5px solid #EBEBEB;transition:all .15s;cursor:pointer;white-space:nowrap;}
+.chip .ce{font-size:14px;}
+.chip.sel{color:#fff;border-color:transparent;}
+.chip.sel.NT{background:#E8584C;box-shadow:0 2px 8px rgba(232,88,76,.3);}
+.chip.sel.NF{background:#F5A623;box-shadow:0 2px 8px rgba(245,166,35,.3);}
+.chip.sel.SJ{background:#4A90D9;box-shadow:0 2px 8px rgba(74,144,217,.3);}
+.chip.sel.SP{background:#5BAD6F;box-shadow:0 2px 8px rgba(91,173,111,.3);}
+.chip.sel.TYPE{background:#2D2D2D;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+
+.divider{height:1px;background:#F0F0F0;margin:0 -18px 18px;}
+
+/* BANNER */
+.mbti-banner{border-radius:16px;padding:18px 16px;margin-bottom:14px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;}
+.mbti-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.15);}
+.bi{font-size:46px;line-height:1;position:relative;z-index:1;}
+.binfo{position:relative;z-index:1;flex:1;}
+.btype{font-size:30px;font-weight:900;color:#fff;letter-spacing:.1em;line-height:1;}
+.blabel{font-size:11px;color:rgba(255,255,255,.8);font-weight:800;margin-top:3px;}
+.btag{display:inline-block;margin-top:6px;background:rgba(255,255,255,.22);color:#fff;font-size:10px;font-weight:900;padding:3px 10px;border-radius:20px;letter-spacing:.04em;}
+.NT .mbti-banner{background:linear-gradient(130deg,#E8584C,#F0844A);}
+.NF .mbti-banner{background:linear-gradient(130deg,#F5A623,#E85E4C);}
+.SJ .mbti-banner{background:linear-gradient(130deg,#4A90D9,#6A6DD9);}
+.SP .mbti-banner{background:linear-gradient(130deg,#5BAD6F,#3DBFB0);}
+
+/* ── 액션 버튼 행 ── */
+.action-row{display:flex;gap:8px;margin-bottom:14px;}
+.action-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:11px 8px;border-radius:12px;
+  font-size:12px;font-weight:900;
+  border:none;transition:all .15s;
+  position:relative;overflow:hidden;
+}
+.action-btn:active{transform:scale(.95);}
+.action-btn:disabled{opacity:.35;cursor:default;}
+
+/* 음원 버튼 */
+.btn-audio{background:#FEE8E7;color:#C0392B;}
+.btn-audio.playing{background:#E8584C;color:#fff;box-shadow:0 3px 12px rgba(232,88,76,.4);}
+.btn-audio .pulse{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:#C0392B;margin-right:2px;
+  animation:none;
+}
+.btn-audio.playing .pulse{background:#fff;animation:blink .7s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+
+/* 교구 버튼 */
+.btn-material{background:#EBF4FF;color:#2563EB;}
+.btn-material:not(:disabled):hover{background:#DBEAFE;}
+
+/* 없을 때 */
+.btn-none{background:#F5F5F5;color:#BBB;}
+
+/* AUDIO PROGRESS */
+.audio-bar-wrap{margin-bottom:14px;display:none;}
+.audio-bar-wrap.show{display:block;}
+.audio-meta{display:flex;justify-content:space-between;font-size:10px;font-weight:800;color:#999;margin-bottom:5px;}
+.audio-bar{width:100%;height:5px;background:#F0F0F0;border-radius:3px;overflow:hidden;cursor:pointer;}
+.audio-fill{height:100%;background:#E8584C;border-radius:3px;width:0%;transition:width .2s linear;}
+
+/* INFO BOXES */
+.info-box{background:#F9F9F9;border-radius:13px;padding:13px 15px;margin-bottom:11px;}
+.ib-label{font-size:10px;font-weight:900;letter-spacing:.08em;color:#CCC;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:5px;}
+.ib-text{font-size:13px;font-weight:700;color:#444;line-height:1.7;}
+
+.solution-box{border-radius:13px;padding:13px 15px;margin-bottom:11px;}
+.NT .solution-box{background:#FFF0EF;} .NF .solution-box{background:#FFF8EC;}
+.SJ .solution-box{background:#EFF6FF;} .SP .solution-box{background:#F0FDF4;}
+.sb-label{font-size:10px;font-weight:900;letter-spacing:.08em;color:#CCC;text-transform:uppercase;margin-bottom:5px;}
+.sb-text{font-size:13px;font-weight:800;line-height:1.65;}
+.NT .sb-text{color:#C0392B;} .NF .sb-text{color:#B5720A;}
+.SJ .sb-text{color:#2563EB;} .SP .sb-text{color:#16A34A;}
+
+.game-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:20px;font-size:12px;font-weight:900;margin-top:5px;}
+.NT .game-chip{background:#FEE8E7;color:#C0392B;} .NF .game-chip{background:#FEF3DC;color:#B5720A;}
+.SJ .game-chip{background:#EBF4FF;color:#2563EB;} .SP .game-chip{background:#EAFBEF;color:#16A34A;}
+
+/* BOTTOM NAV */
+#bottom-nav{padding:11px 18px 15px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #F0F0F0;flex-shrink:0;background:#fff;}
+.nav-btn{width:40px;height:40px;border-radius:50%;background:#F5F5F5;font-size:20px;font-weight:900;color:#888;display:flex;align-items:center;justify-content:center;transition:transform .12s;}
+.nav-btn:not([disabled]):active{transform:scale(.85);}
+.nav-btn[disabled]{opacity:.25;}
+.nav-pips{display:flex;gap:6px;align-items:center;}
+.pip{width:7px;height:7px;border-radius:50%;background:#E8E8E8;transition:all .22s;}
+.pip.on{width:22px;border-radius:4px;}
+.NT .pip.on{background:#E8584C;} .NF .pip.on{background:#F5A623;}
+.SJ .pip.on{background:#4A90D9;} .SP .pip.on{background:#5BAD6F;}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="header">
+    <div class="hd-title">BeatCat <span>MBTI</span> 🐱</div>
+    <div class="hd-sub">교사 유형별 수업 활동 카드</div>
+  </div>
+
+  <div id="main-card">
+    <div id="card-scroll">
+      <div class="sec-header"><span class="si">🎤</span> 교사 유형</div>
+      <div class="chip-group" id="group-chips"></div>
+      <div class="divider"></div>
+      <div class="sec-header"><span class="si">🃏</span> MBTI 유형</div>
+      <div class="chip-group" id="type-chips"></div>
+      <div class="divider"></div>
+      <div id="card-body"></div>
+    </div>
+    <div id="bottom-nav">
+      <button class="nav-btn" id="nav-prev" onclick="prev()">‹</button>
+      <div class="nav-pips" id="nav-pips"></div>
+      <button class="nav-btn" id="nav-next" onclick="nxt()">›</button>
+    </div>
+  </div>
+
+  <div style="height:12px;flex-shrink:0;"></div>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   ASSETS — mbti-assets.json 자동 로드
+   같은 폴더에 mbti-assets.json 파일을 두면 자동으로 읽어옵니다
+══════════════════════════════════════ */
+let ASSETS = {};
+
+async function loadAssets(){
+  try{
+    const res = await fetch('./mbti-assets.json');
+    if(res.ok) ASSETS = await res.json();
+  }catch(e){
+    // 로컬 파일 환경에서는 fetch 불가 → ASSETS 빈 객체 유지
+    console.log('mbti-assets.json 로드 실패 — 음원/교구 버튼 비활성');
+  }
+  renderAll();
+}
+
+
+const D={
+  NT:{label:'NT 전략형',emoji:'🔴',
+    types:{
+      INTJ:{icon:'🎯',label:'전략형 교사',trait:'구조와 계획으로 수업을 설계하는 전략형 교사',solution:'"좋아, 이건 미션이야— Step 1부터 하나씩 깨보자!"',gt:'게임',gi:'🎮',game:'격파 뒤에 단어 꺼내가기',tip:'단계별 목표 제시 → 달성 확인 → 다음 단계 진입. 퀴즈를 "미션 클리어"로 프레이밍하면 집중도 상승.'},
+      INTP:{icon:'🔍',label:'탐구형 교사',trait:'질문과 탐구로 수업을 확장하는 사고형 교사',solution:'"왜 그럴까? 우리 같이 이유를 찾아보자!"',gt:'게임',gi:'🎮',game:'Why team vs Because team / 우리집에 왜 왔니?',tip:'"Why" 팀이 질문, "Because" 팀이 대답. 우리집에 왜 왔니 멜로디로 문답.'},
+      ENTJ:{icon:'🏆',label:'리더형 교사',trait:'목표와 결과 중심으로 수업을 이끄는 리더형 교사',solution:'"마침표·물음표 역할 팀경기 미션— 이긴 팀이 보너스 포인트!"',gt:'게임',gi:'🎮',game:'제곱승 보너스 카드',tip:'정답 시 보너스 카드 획득, 카드 조합으로 점수가 기하급수적으로 증가.'},
+      ENTP:{icon:'💡',label:'창의형 교사',trait:'아이디어와 변화를 즐기는 즉흥 창의형 교사',solution:'"노란불! Wait~ I have an Idea!"',gt:'게임',gi:'🎮',game:'아인슈타인 게임 (CVC·한 어절 번갈아 말하기)',tip:'노란 신호등 카드를 들면 freeze, 새 아이디어 추가. CVC와 어절을 번갈아 말하며 창의적 연쇄 발화.'},
+    }},
+  NF:{label:'NF 공감형',emoji:'🟡',
+    types:{
+      INFJ:{icon:'🌙',label:'공감형 교사',trait:'감정과 스토리로 몰입을 만드는 공감형 교사',solution:'"지금부터 우리가 주인공이야— 이 문제를 함께 해결해보자"',gt:'역할',gi:'🎭',game:'오스카상 (주인공 빙의 역할놀이)',tip:'학생이 이야기 속 캐릭터가 되어 영어로 대화. 교사는 내레이터.'},
+      INFP:{icon:'🎨',label:'감성형 교사',trait:'감정 표현과 창작을 이끌어내는 감성형 교사',solution:'"이걸 너만의 방식으로 표현해볼래?"',gt:'크리에이티브',gi:'✏️',game:'Copy Me! (단어 동작 같이 만들기)',tip:'"elephant"라면 코 흔들기 등 학생 스스로 동작 창안.'},
+      ENFJ:{icon:'🤝',label:'리드형 교사',trait:'관계와 참여를 이끌어내는 리드형 교사',solution:'"우리 다 같이 해보자! 서로 도와주면서!"',gt:'게임',gi:'🎮',game:'2인3각 / 5인6각 문장발화 마칭',tip:'묶여 이동하며 단어·문장을 발화. 넘어지면 처음부터!'},
+      ENFP:{icon:'🎉',label:'활력형 교사',trait:'에너지와 리액션으로 분위기를 살리는 활력형 교사',solution:'"와 재밌다! 한 번 더! 더 크게 해보자!"',gt:'게임',gi:'🎮',game:'Better than Me?',tip:'교사 발화 → 학생이 더 크게·빠르게·재미있게 도전.'},
+    }},
+  SJ:{label:'SJ 안정형',emoji:'🔵',
+    types:{
+      ISTJ:{icon:'📋',label:'루틴형 교사',trait:'루틴과 체계로 안정적인 수업을 만드는 교사',solution:'"좋아, 같은 방식으로 한 번 더 반복해보자"',gt:'게임',gi:'🎮',game:'Whisper Say',tip:'귓속말 전달 → 마지막 학생이 크게 외치기.'},
+      ISFJ:{icon:'🌸',label:'케어형 교사',trait:'아이를 세심하게 케어하는 따뜻한 교사',solution:'"괜찮아, 천천히 해도 돼— 선생님이 같이 할게"',gt:'게임',gi:'🎮',game:'중력 vs 무중력 / 속도놀이 / 바다 vs 사막 / 거북이놀이',tip:'거북이처럼 느리게 → 로켓처럼 빠르게. 부담 없는 참여.'},
+      ESTJ:{icon:'⚖️',label:'규칙형 교사',trait:'규칙과 통제로 수업을 정확히 운영하는 교사',solution:'"규칙 기억! 지금은 차례 지켜서 진행한다!"',gt:'연출',gi:'🎬',game:'군대 BGM 교실 룰',tip:'군악대 BGM 틀고 차렷→쉬어 구령으로 수업 전환.'},
+      ESFJ:{icon:'👏',label:'소통형 교사',trait:'칭찬과 소통으로 분위기를 만드는 교사',solution:'"와 너무 잘했어! 친구들도 같이 박수!"',gt:'크리에이티브',gi:'✏️',game:'Good Job 박수챈트',tip:'"Good Good Job Job" 리듬에 맞춰 클래스 구호 완성.'},
+    }},
+  SP:{label:'SP 활동형',emoji:'🟢',
+    types:{
+      ISTP:{icon:'🔧',label:'실습형 교사',trait:'직접 해보게 만드는 실습 중심 교사',solution:'"말 말고 직접 해보자— 손으로 해보면 바로 알 수 있어"',gt:'게임',gi:'🎮',game:'Partner Activity / 짝 손바닥에 적기',tip:'짝 손바닥에 단어 써서 맞추기. 촉각 기억으로 어휘 정착.'},
+      ISFP:{icon:'🎭',label:'표현형 교사',trait:'감각과 예술로 표현을 이끄는 교사',solution:'"느낌대로 해도 좋아— 자유롭게 만들어봐"',gt:'크리에이티브',gi:'✏️',game:'감정선으로 표현하기 / 선 따라 이동하기',tip:'happy=노랑, sad=파랑 곡선. 색·선으로 형용사 신체화, 그 선을 따라 직접 이동.'},
+      ESTP:{icon:'⚡',label:'액션형 교사',trait:'빠른 템포와 액션으로 수업을 살리는 교사',solution:'"발화 후 레이스! Go Go friend!!"',gt:'게임',gi:'🎮',game:'발화 후 레이스! Go Go friend!!',tip:'단어·문장 발화 즉시 달리기 출발. 먼저 도착한 학생이 다음 발화 선택권 획득.'},
+      ESFP:{icon:'🌟',label:'무대형 교사',trait:'퍼포먼스로 아이를 끌어당기는 무대형 교사',solution:'"좋아! 지금부터 무대야— 멋지게 보여줘!"',gt:'게임',gi:'🎮',game:'골 세레모니 넣어서 룰렛 재생성',tip:'정답 시 세레모니 선택, 룰렛으로 다음 활동 결정.'},
+    }},
+};
+
+const GK=['NT','NF','SJ','SP'];
+let cg='NT',ci=0;
+let audioEl=null, isPlaying=false;
+
+function tkeys(g){return Object.keys(D[g].types);}
+function ct(){return tkeys(cg)[ci];}
+
+// ── 그룹칩 ──
+function renderGroupChips(){
+  const el=document.getElementById('group-chips');el.innerHTML='';
+  GK.forEach(g=>{
+    const btn=document.createElement('button');
+    btn.className='chip'+(g===cg?' sel '+g:'');
+    btn.innerHTML=`<span class="ce">${D[g].emoji}</span>${D[g].label}`;
+    btn.onclick=()=>{stopAudio();cg=g;ci=0;renderAll();};
+    el.appendChild(btn);
+  });
+}
+
+// ── 유형칩 ──
+function renderTypeChips(){
+  const el=document.getElementById('type-chips');el.innerHTML='';
+  tkeys(cg).forEach((t,i)=>{
+    const td=D[cg].types[t];
+    const btn=document.createElement('button');
+    btn.className='chip'+(i===ci?' sel TYPE':'');
+    btn.innerHTML=`<span class="ce">${td.icon}</span>${t}`;
+    btn.onclick=()=>{stopAudio();ci=i;renderAll();};
+    el.appendChild(btn);
+  });
+}
+
+// ── 카드 본문 ──
+function renderBody(){
+  const g=cg,tk=ct(),td=D[g].types[tk];
+  const asset=ASSETS[tk]||null;
+  const hasAudio=!!(asset&&asset.audio);
+  const hasMaterial=!!(asset&&asset.material);
+
+  const wrap=document.getElementById('card-body');
+  wrap.className=g;
+
+  wrap.innerHTML=`
+    <div class="mbti-banner">
+      <div class="bi">${td.icon}</div>
+      <div class="binfo">
+        <div class="btype">${tk}</div>
+        <div class="blabel">${td.label}</div>
+        <div class="btag">${g} · ${g==='NT'?'전략형':g==='NF'?'공감형':g==='SJ'?'안정형':'활동형'}</div>
+      </div>
+    </div>
+
+    <!-- ── 음원 + 교구 버튼 ── -->
+    <div class="action-row">
+      <button class="action-btn ${hasAudio?'btn-audio':'btn-none'}"
+        id="audio-btn"
+        ${hasAudio?`onclick="toggleAudio('${asset.audio.path}','${asset.audio.name}')"`:'disabled'}>
+        ${hasAudio
+          ? `<span class="pulse" id="pulse-dot"></span> 🎵 음원 재생`
+          : `🎵 음원 없음`}
+      </button>
+      <button class="action-btn ${hasMaterial?'btn-material':'btn-none'}"
+        ${hasMaterial?`onclick="downloadMaterial('${asset.material.path}','${asset.material.name}')"`:'disabled'}>
+        ${hasMaterial
+          ? `📎 교구 다운로드`
+          : `📎 교구 없음`}
+      </button>
+    </div>
+
+    <!-- 음원 진행 바 -->
+    <div class="audio-bar-wrap" id="audio-bar-wrap">
+      <div class="audio-meta">
+        <span id="audio-title" style="color:#E8584C;font-weight:900;">🎵 재생 중</span>
+        <span id="audio-time">0:00 / 0:00</span>
+      </div>
+      <div class="audio-bar" onclick="seekAudio(event)">
+        <div class="audio-fill" id="audio-fill"></div>
+      </div>
+    </div>
+
+    ${asset&&asset.memo?`<div style="background:#FFFBEB;border-radius:10px;padding:9px 13px;margin-bottom:12px;font-size:11px;font-weight:800;color:#B5720A;">📝 ${asset.memo}</div>`:''}
+
+    <div class="info-box">
+      <div class="ib-label">🧠 교사 특징</div>
+      <div class="ib-text">${td.trait}</div>
+    </div>
+
+    <div class="solution-box">
+      <div class="sb-label">💬 솔루션</div>
+      <div class="sb-text">${td.solution}</div>
+    </div>
+
+    <div class="info-box">
+      <div class="ib-label">${td.gi} ${td.gt}</div>
+      <div class="ib-text" style="font-weight:800;font-size:14px;">${td.game}</div>
+      <div class="game-chip">${td.gi} ${td.gt} 활동</div>
+    </div>
+
+    <div class="info-box">
+      <div class="ib-label">📌 활동 팁</div>
+      <div class="ib-text">${td.tip}</div>
+    </div>
+  `;
+}
+
+// ── 페이지네이션 ──
+function renderPips(){
+  const ts=tkeys(cg);
+  const el=document.getElementById('nav-pips');
+  el.className='nav-pips '+cg;
+  el.innerHTML=ts.map((_,i)=>`<div class="pip${i===ci?' on':''}"></div>`).join('');
+  document.getElementById('nav-prev').disabled=ci===0;
+  document.getElementById('nav-next').disabled=ci===ts.length-1;
+}
+
+function renderAll(){
+  renderGroupChips();renderTypeChips();renderBody();renderPips();
+  document.getElementById('card-scroll').scrollTop=0;
+}
+
+// ── 오디오 ──
+function stopAudio(){
+  if(audioEl){audioEl.pause();audioEl=null;}
+  isPlaying=false;
+  document.getElementById('audio-bar-wrap')&&(document.getElementById('audio-bar-wrap').classList.remove('show'));
+  const btn=document.getElementById('audio-btn');
+  if(btn){btn.classList.remove('playing');}
+}
+
+function toggleAudio(path,name){
+  if(isPlaying){stopAudio();return;}
+  if(audioEl)audioEl.pause();
+
+  audioEl=new Audio(path);
+  audioEl.addEventListener('timeupdate',()=>{
+    const fill=document.getElementById('audio-fill');
+    const timeEl=document.getElementById('audio-time');
+    if(!audioEl)return;
+    const pct=audioEl.duration?(audioEl.currentTime/audioEl.duration*100):0;
+    if(fill)fill.style.width=pct+'%';
+    if(timeEl)timeEl.textContent=`${fmt(audioEl.currentTime)} / ${fmt(audioEl.duration||0)}`;
+  });
+  audioEl.addEventListener('ended',()=>{stopAudio();});
+  audioEl.addEventListener('error',()=>{
+    alert('음원 파일을 찾을 수 없습니다.\n파일 경로: '+path);
+    stopAudio();
+  });
+  audioEl.play().then(()=>{
+    isPlaying=true;
+    const btn=document.getElementById('audio-btn');
+    if(btn)btn.classList.add('playing');
+    const wrap=document.getElementById('audio-bar-wrap');
+    if(wrap)wrap.classList.add('show');
+    const title=document.getElementById('audio-title');
+    if(title)title.textContent='🎵 '+name;
+  }).catch(e=>{alert('재생 오류: '+e.message);stopAudio();});
+}
+
+function seekAudio(e){
+  if(!audioEl||!audioEl.duration)return;
+  const bar=e.currentTarget;
+  const pct=e.offsetX/bar.offsetWidth;
+  audioEl.currentTime=pct*audioEl.duration;
+}
+
+function fmt(s){
+  const m=Math.floor(s/60),sec=Math.floor(s%60);
+  return `${m}:${sec.toString().padStart(2,'0')}`;
+}
+
+// ── 교구 다운로드 ──
+function downloadMaterial(path,name){
+  const a=document.createElement('a');
+  a.href=path;a.download=name;a.target='_blank';a.click();
+}
+
+// ── 네비 ──
+function prev(){if(ci>0){stopAudio();ci--;renderAll();}}
+function nxt(){if(ci<tkeys(cg).length-1){stopAudio();ci++;renderAll();}}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')nxt();if(e.key==='ArrowLeft')prev();});
+
+let _sx=0;
+document.getElementById('card-scroll').addEventListener('touchstart',e=>{_sx=e.touches[0].clientX;},{passive:true});
+document.getElementById('card-scroll').addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-_sx;
+  if(Math.abs(dx)>50){dx<0?nxt():prev();}
+});
+
+renderGroupChips();
+renderTypeChips();
+renderPips();
+loadAssets(); // mbti-assets.json 로드 후 renderAll() 호출
+</script>
+</body>
+</html>

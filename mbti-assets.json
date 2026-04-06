@@ -1,0 +1,130 @@
+{
+  "INTJ": {
+    "group": "NT",
+    "icon": "🎯",
+    "label": "전략형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "INTP": {
+    "group": "NT",
+    "icon": "🔍",
+    "label": "탐구형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ENTJ": {
+    "group": "NT",
+    "icon": "🏆",
+    "label": "리더형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ENTP": {
+    "group": "NT",
+    "icon": "💡",
+    "label": "창의형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "INFJ": {
+    "group": "NF",
+    "icon": "🌙",
+    "label": "공감형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "INFP": {
+    "group": "NF",
+    "icon": "🎨",
+    "label": "감성형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ENFJ": {
+    "group": "NF",
+    "icon": "🤝",
+    "label": "리드형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ENFP": {
+    "group": "NF",
+    "icon": "🎉",
+    "label": "활력형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ISTJ": {
+    "group": "SJ",
+    "icon": "📋",
+    "label": "루틴형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ISFJ": {
+    "group": "SJ",
+    "icon": "🌸",
+    "label": "케어형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ESTJ": {
+    "group": "SJ",
+    "icon": "⚖️",
+    "label": "규칙형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ESFJ": {
+    "group": "SJ",
+    "icon": "👏",
+    "label": "소통형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ISTP": {
+    "group": "SP",
+    "icon": "🔧",
+    "label": "실습형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ISFP": {
+    "group": "SP",
+    "icon": "🎭",
+    "label": "표현형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ESTP": {
+    "group": "SP",
+    "icon": "⚡",
+    "label": "액션형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  },
+  "ESFP": {
+    "group": "SP",
+    "icon": "🌟",
+    "label": "무대형 교사",
+    "memo": "",
+    "audio": null,
+    "material": null
+  }
+}
