@@ -7,7 +7,7 @@
     "audio": null,
     "material": {
       "name": "ESTJ-card.pdf",
-      "path": "./assets/materials/ESTJ-card.pdf"
+      "path": "/assets/materials/ESTJ-card.pdf"
     }
   },
   "ESTJ": {
@@ -17,7 +17,7 @@
     "memo": "",
     "audio": {
       "name": "ESTJ-bgm.mp3",
-      "path": "./assets/audio/ESTJ-bgm.mp3"
+      "path": "/assets/audio/ESTJ-bgm.mp3"
     },
     "material": null
   },
@@ -28,7 +28,7 @@
     "memo": "",
     "audio": {
       "name": "INTJ-bgm.mp3",
-      "path": "./assets/audio/INTJ-bgm.mp3"
+      "path": "/assets/audio/INTJ-bgm.mp3"
     },
     "material": null
   },
@@ -39,7 +39,7 @@
     "memo": "",
     "audio": {
       "name": "ENTP-bgm.mp3",
-      "path": "./assets/audio/ENTP-bgm.mp3"
+      "path": "/assets/audio/ENTP-bgm.mp3"
     },
     "material": null
   },
@@ -50,7 +50,7 @@
     "memo": "",
     "audio": {
       "name": "ESTP-bgm.mp3",
-      "path": "./assets/audio/ESTP-bgm.mp3"
+      "path": "/assets/audio/ESTP-bgm.mp3"
     },
     "material": null
   },
@@ -61,7 +61,7 @@
     "memo": "",
     "audio": {
       "name": "ISFP-bgm.mp3",
-      "path": "./assets/audio/ISFP-bgm.mp3"
+      "path": "/assets/audio/ISFP-bgm.mp3"
     },
     "material": null
   }
